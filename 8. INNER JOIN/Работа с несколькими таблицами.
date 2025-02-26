@@ -1,0 +1,52 @@
+Для дальнейшей работы, вам понадобится этот код
+
+заготовка_для_joins.txt  (280 B)
+ Таймкоды:
+00:48  Primary Key повторение теории
+01:28  Foreign Key повторение теории
+01:51   4 вида JOINS: inner, right, left, full outer
+03:40  INNER JOIN теория + практика
+04:20  Запуск заранее заготовленного скрипта для БД DataBoomDB
+09:10  Использовате DELETE + TCL + INNER JOIN
+13:45  INNER JOIN with ALIASES
+
+1: Вставьте ваш код ниже
+--join
+select *from Students
+select *from emails
+
+--inner join 
+select *
+from Students
+inner join emails on Students.StudentID = emails.StudentId
+
+--delete from student
+begin tran delete_student
+delete Students
+where StudentId > 10
+
+--delete from emails
+begin tran delete_email
+delete from emails
+where StudentId < 3
+
+rollback tran delete_student
+rollback tran delete_email
+
+--inner join with aliases
+select *
+from Students A
+inner join emails B on A.StudentID = B.StudentId
+2: Выполните самостоятельное задание!
+Выведите ID альбома, название альбома и имя артиста/группы, отсортировав результат по ID альбома по порядку(возрастанию) используя данные из таблиц Album и Artist
+
+SELECT 
+    Album.AlbumId AS "ID Альбома", 
+    Album.Title AS "Название Альбома", 
+    Artist.Name AS "Имя Артиста/Группы"
+FROM 
+    Album
+JOIN 
+    Artist ON Album.ArtistId = Artist.ArtistId
+ORDER BY 
+    Album.AlbumId ASC;
