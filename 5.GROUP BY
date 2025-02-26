@@ -1,0 +1,77 @@
+Use MusicDB
+select *from Invoice
+
+--Сумма всех счетов
+select sum(Total) as Sum_Invoice
+from Invoice
+
+--Средний счет
+select avg(Total) as Avg_Invoice
+from Invoice
+
+--группировка по одной колонке, сумма счетов по странам
+select BillingCountry, sum(Total) as Sum_Invoice
+from Invoice
+group by BillingCountry
+
+--группировка по двум колонкам, сумма счетов по странам и городам
+select BillingCountry, BillingCity, sum(Total) as Sum_Invoice
+from Invoice
+group by BillingCountry,BillingCity
+
+--группировка по двум колонкам, сумма счетов по странам и городам и условие where
+select BillingCountry, BillingCity, sum(Total) as Sum_Invoice
+from Invoice
+where BillingCountry = 'USA'
+group by BillingCountry,BillingCity
+
+--группировка по двум колонкам, сумма счетов по странам и городам и условие having
+select BillingCountry, BillingCity, sum(Total) as Sum_Invoice
+from Invoice
+group by BillingCountry,BillingCity
+having BillingCountry = 'USA'
+
+--группировка по двум колонкам, сумма счетов по странам и городам и числовое условие where
+select BillingCountry, BillingCity, sum(Total) as Sum_Invoice
+from Invoice
+where sum(Total) > 30
+group by BillingCountry,BillingCity --не работает
+
+--группировка по двум колонкам, сумма счетов по странам и городам и числовое условие having
+select BillingCountry, BillingCity, sum(Total) as Sum_Invoice
+from Invoice
+group by BillingCountry,BillingCity
+having sum(Total) > 30
+
+--группировка по двум колонкам, сумма счетов по странам и городам и числовое условие where, having
+select BillingCountry, BillingCity, sum(Total) as Sum_Invoice
+from Invoice
+where BillingCountry = 'USA'
+group by BillingCountry,BillingCity
+having sum(Total) > 40
+
+
+----2 video
+
+--посчитать количество покупателей
+select *from Customer
+select count(id) as count_customer
+from customer
+
+--посчитать количество покупателей по странам
+select *from Customer
+select country, count(id) as count_customer
+from customer
+Group by country
+
+--посчитать количество покупателей по странам и по городам
+select *from Customer
+select country,city, count(id) as count_customer
+from customer
+Group by country, city
+2: Выполните самостоятельное задание!
+Просуммируйте Unitprice, для каждого AlbumId.
+
+SELECT AlbumId, SUM(UnitPrice) AS TotalUnitPrice
+FROM Track
+GROUP BY AlbumId
