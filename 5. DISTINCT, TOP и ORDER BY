@@ -1,0 +1,21 @@
+Use MusicDB
+select *from Invoice
+
+--уникальные комбинации город и индекс
+select distinct BillingCity, BillingPostalCode from Invoice
+
+--топ 10 строк
+select top 10 *from Invoice
+
+--order by по возрастанию
+select *from Invoice
+order by BillingCountry asc
+
+--order by по убыванию
+select *from Invoice
+order by BillingCountry, BillingCity desc
+2: Выполните самостоятельное задание!
+Выведите список уникальных должностей (Title) и город (City), где данный специалист находится из таблицы Employee. Необходимо так же отсортировать колонку City по алфавиту.
+
+  select title, city from employee
+  order by city asc
