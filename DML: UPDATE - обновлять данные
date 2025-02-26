@@ -1,0 +1,20 @@
+--работа с Update
+use DataBoomDB
+select *from Students
+
+--добавляем колонку age
+alter table Students
+add age int
+
+--Update без where обновляет все строки
+update Students
+set Age = 20
+
+--Update с Where только указанные строки
+update Students
+set Age = 18
+where StudentID in (1,4,5)
+
+update Students
+set Age = 19
+where StudentID = 10
