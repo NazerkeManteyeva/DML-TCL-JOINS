@@ -1,0 +1,13 @@
+USE DataBoomDB
+
+-- Insert duplicates into table Assets by modifying while clause
+Declare @Id int
+Set @Id = 600
+
+While(@Id between 600 and 5000)
+Begin
+ Insert into assets values (@Id, 'Asset ' + CAST( @Id as nvarchar(20)) )
+ 
+ Print @Id
+ Set @Id = @Id + 1
+End

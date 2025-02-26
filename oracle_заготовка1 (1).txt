@@ -1,0 +1,26 @@
+USE DataBoomDB
+
+-- Drop table Assets if already exists
+If (Exists (select * 
+            from information_schema.tables 
+            where table_name = 'assets'))
+Begin
+ Drop Table assets
+End
+
+-- Create table Assets 
+Create table assets 
+ (id int not null,
+ AssetName varchar (50))
+
+ -- Insert values into table Assets 
+Declare @Id int
+Set @Id = 1
+
+While(@Id <= 100000)
+Begin
+ Insert into assets values (@Id, 'Asset ' + CAST( @Id as nvarchar(20)) )
+ 
+ Print @Id
+ Set @Id = @Id + 1
+End

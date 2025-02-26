@@ -1,0 +1,11 @@
+-- Insert values into table emails 
+Declare @StudentId int
+Set @StudentId = 16
+
+While(@StudentId <= 20)
+Begin
+ Insert into emails values (@StudentId, 'student' + CAST( @StudentId as nvarchar(20)) + '@databoom.kz')
+ 
+ Print @StudentId
+ Set @StudentId = @StudentId + 1
+End
