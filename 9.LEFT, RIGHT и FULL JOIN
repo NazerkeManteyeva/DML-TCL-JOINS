@@ -1,0 +1,23 @@
+00:11  LEFT JOIN теория+практика
+04:08  RIGHT JOIN теория+практика
+07:44  FULL (OUTER) JOIN теория+практика
+
+--left join
+select *
+from Students A
+left join emails B on A.StudentID = B.StudentId
+
+--right join
+select *
+from Students A
+right join emails B on A.StudentID = B.StudentId
+
+--смена мест
+select *
+from emails A
+left join Students B on A.StudentID = B.StudentId
+
+--full outer join
+select*
+from Students A
+full outer join emails B on A.StudentID = B.StudentId
