@@ -1,0 +1,59 @@
+1: Напишите запрос, чтобы узнать общую сумму покупок, максимальную, минимальную и среднюю сумму покупки по всем заказам.
+* purch_amt - сумма покупки
+
+SELECT 
+    SUM(purch_amt) AS total_amount,      
+    MAX(purch_amt) AS max_purchase,     
+    MIN(purch_amt) AS min_purchase,   
+    AVG(purch_amt) AS avg_purchase       
+FROM 
+    orders;                             
+2: Напишите запрос, чтобы найти количество продавцов с заказами.
+Подсказка: Использовать необходимо одну таблицу
+
+SELECT 
+    COUNT(DISTINCT salesman_id) AS seller_count 
+FROM 
+    orders
+3: Напишите запрос, чтобы найти количество клиентов, у которых есть оценка (grade)
+SELECT 
+    COUNT(DISTINCT customer_id) AS customer_count
+    Customer                                  
+WHERE 
+    grade IS NOT NULL;   
+4: Напишите запрос, чтобы найти максимальную оценку (grade) для каждого города.
+SELECT 
+    city,                  
+    MAX(grade) AS max_grade 
+FROM 
+    Customer              
+GROUP BY
+    city; 
+5: Напишите запрос, чтобы показать id клиента и наибольшую сумму покупки для каждого клиента
+SELECT 
+    customer_id,             
+    MAX(purch_amt) AS max_purchase 
+FROM 
+    orders                    
+GROUP BY 
+    customer_id; 
+6: Напишите запрос, который выведет имя продавца и наибольшую сумму покупки за дату «2012-08-17» для каждого продавца
+SELECT salesman_id, MAX(purch_amt) AS max_purchase_amount
+FROM Orders
+WHERE ord_date = '2012-08-17'
+GROUP BY salesman_id;
+7: Напишите запрос, чтобы найти наибольшую сумму покупки (отдельно по датам) с именем клиента и датой заказа, только для тех клиентов, у которых наибольшая сумма покупки за день превышает 2000.
+SELECT customer_id, ord_date, MAX(purch_amt) AS max_purchase_amount
+FROM Orders
+GROUP BY customer_id, ord_date
+HAVING MAX(purch_amt) > 2000;
+8: Напишите запрос, чтобы найти наибольшую сумму покупки с именем клиента и датой заказа (отдельно по датам), только для тех клиентов, у которых наибольшая сумма покупки за день находится в диапазоне от 2000 до 5000.
+SELECT client_name, purchase_date, MAX(purchase_amount) AS max_purchase_amount
+FROM purchases
+GROUP BY client_name, purchase_date
+HAVING MAX(purchase_amount) BETWEEN 2000 AND 5000;
+9: Напишите запрос, чтобы найти наибольшую сумму покупки с именем клиента и датой заказа (отдельно по датам), только для тех клиентов, у которых наибольшая сумма покупки за день находится в списке значений 2000, 3000, 5760 и 6000.
+SELECT customer_id, ord_date, MAX(purch_amt) AS max_purchase_amount
+FROM Orders
+GROUP BY customer_id, ord_date
+HAVING MAX(purch_amt) IN (2000, 3000, 5760, 6000);
