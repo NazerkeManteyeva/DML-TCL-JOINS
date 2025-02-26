@@ -1,0 +1,33 @@
+В данном видео вы будете использовать таблицы CITY (вы загружали на уроке 1.18)  и COUNTRY
+COUNTRY.TXT  (43.97 KB)
+Замечание: обратите внимание, по каким столбцам нужно соединить таблицы.для наглядности приведены фрагменты таблиц.
+1: Вам даны 2 таблицы: CITY и COUNTRY. Напишите SQL запрос, который даст вам сумму населения всех городов на континенте Asia
+SELECT 
+    SUM(CITY.POPULATION) AS TotalPopulation
+FROM 
+    CITY
+JOIN 
+    COUNTRY ON CITY.ID = COUNTRY.ID
+WHERE 
+    COUNTRY.CONTINENT = 'Asia';
+2: Вам даны 2 таблицы: CITY и COUNTRY. Напишите SQL запрос, который даст вам список всех уникальных названий городов на континенте Africa
+ SELECT DISTINCT 
+    CITY.Name AS CityName
+FROM 
+    CITY
+JOIN 
+    COUNTRY ON CITY.ID = COUNTRY.ID
+WHERE 
+    COUNTRY.CONTINENT = 'Africa';
+3: Вам даны 2 таблицы: CITY и COUNTRY. Напишите SQL запрос, который даст вам список всех континентов и их среднее городское население.
+Учтите, что в таблице COUNTRY общее население, не только в городах.
+
+SELECT 
+    COUNTRY.Continent AS Continent,
+    AVG(CITY.POPULATION) AS AverageCityPopulation
+FROM 
+    CITY
+JOIN 
+    COUNTRY ON CITY.ID = COUNTRY.ID
+GROUP BY 
+    COUNTRY.Continent;
