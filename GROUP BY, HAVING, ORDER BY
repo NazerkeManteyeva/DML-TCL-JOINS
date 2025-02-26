@@ -1,0 +1,23 @@
+* В данном видео необходимо использовать таблицу Customer в базе данных MusicDB
+К сведению, у вас таблицы Customer есть еще в базе данных MyMusicDB и TestDB, но они другие по содержанию.
+По видео, повторите все шаги
+01:22   Сколько компаний в таблице Customer
+02:49  Соединение Customer и Invoice + Сумма счетов (использование distinct, sum, where, having, group by)
+1: Вставьте ваш код ниже
+use MusicDB
+select *from Invoice
+select *from Customer
+
+--сколько компании в таблице customer
+select count (distinct company) as distinct_company
+from customer
+
+--соединяем customer i invoice, и находим сумму счетов
+select A.company, sum(B.Total) as sum_invoice, 
+count (dictinct B.InvoiceId) as count_invoice
+from Customer A
+join Invoice B on A.CustomerId = B.CustomerId
+where A.company is not null
+group by A.company
+having sum(B.Total) > 38
+order by A.company desc
