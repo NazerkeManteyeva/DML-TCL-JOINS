@@ -1,0 +1,27 @@
+--TCL команды
+--Drop
+--начало транзакции
+begin tran drop_table_emails
+drop table emails
+select *from emails
+--откат транзакции
+rollback tran drop_table_emails
+--завершение транзакции
+commit
+
+--Truncate
+--начало тразакции truncate_table_emails
+begin tran truncate_table_emails
+truncate table emails
+select *from emails
+--откат тразакции truncate_table_emails
+rollback tran truncate_table_emails
+
+--Delete
+--начало тразакции delete_table_emails
+begin tran delete_table_emails
+delete from emails
+where StudentId < 3
+select *from emails
+--откат тразакции delete_table_emails
+rollback tran delete_table_emails
