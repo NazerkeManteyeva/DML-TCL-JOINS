@@ -1,0 +1,11 @@
+--Delete
+select *from emails
+
+--удаляем все строки
+delete from emails
+
+--удаляем только те строки, где StudentId > 5
+where StudentId > 5
+
+--Truncate
+Truncate table emails
